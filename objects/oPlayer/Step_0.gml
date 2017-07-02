@@ -20,15 +20,15 @@ if (!sticking) {
 	//handle horizontal movement
 
 	//check if player is hitting wall horizontally
-	if (place_meeting(x + hsp, y, oWall))
+	if (place_meeting(x + xSpd, y, oWall))
 	{
 	   //Move until contact with the wall
-	   if (hsp != 0)
+	   if (xSpd != 0)
 	   {
-	        while (!place_meeting(x + sign(hsp), y, oWall)) x += sign(hsp);
+	        while (!place_meeting(x + sign(xSpd), y, oWall)) x += sign(xSpd);
 	   }
 
-	   hsp = 0;
+	   xSpd = 0;
 	}
 
 		// Dealing with right side (Red Case)
@@ -43,12 +43,12 @@ if (!sticking) {
     
 	    //if(KEY_JUMP)
 	    //{
-	    //    vsp = -2
+	    //    ySpd = -2
 	    //}
     
 	    //if(KEY_DOWN)
 	    //{
-	    //    vsp = 2;
+	    //    ySpd = 2;
 	    //}
 	}
 	else 
@@ -57,7 +57,7 @@ if (!sticking) {
 	}
 
 	// Dealing with Left Side (Blue Case)
-	if (place_meeting( x - 1, y, oWall) and !ground)
+	if (place_meeting (x - 1, y, oWall))
 	{ 
 	    stickleft = 1;
     
@@ -68,12 +68,12 @@ if (!sticking) {
     
 	    //if(KEY_JUMP)
 	    //{
-	    //    vsp = -2;
+	    //    ySpd = -2;
 	    //}
     
 	    //if(KEY_DOWN)
 	    //{
-	    //    vsp = 2;
+	    //    ySpd = 2;
 	    //}
 	}
 	else 
@@ -82,20 +82,20 @@ if (!sticking) {
 	}
 
 	//Do horizontal movement
-	x += hsp;
+	x += xSpd;
 	
 	//handle vertical movement
 	
 	//check if we're hitting a wall vertically
-	if (place_meeting(x, y + vsp, oWall))
+	if (place_meeting(x, y + ySpd, oWall))
 	{
 	   //Move until contact with the wall
-	   if (vsp != 0)
+	   if (ySpd != 0)
 	   {
-	        while (!place_meeting(x, y + sign(vsp), oWall)) y += sign(vsp);
+	        while (!place_meeting(x, y + sign(ySpd), oWall)) y += sign(ySpd);
 	   }
 
-	   vsp = 0;
+	   ySpd = 0;
 	}
 	
 	// Deal with ceiling
@@ -110,12 +110,12 @@ if (!sticking) {
     
 	    //if(KEY_JUMP)
 	    //{
-	    //    vsp = -2
+	    //    ySpd = -2
 	    //}
     
 	    //if(KEY_DOWN)
 	    //{
-	    //    vsp = 2;
+	    //    ySpd = 2;
 	    //}
 	}
 	else 
@@ -135,12 +135,12 @@ if (!sticking) {
     
 	    //if(KEY_JUMP)
 	    //{
-	    //    vsp = -2
+	    //    ySpd = -2
 	    //}
     
 	    //if(KEY_DOWN)
 	    //{
-	    //    vsp = 2;
+	    //    ySpd = 2;
 	    //}
 	}
 	else 
@@ -148,17 +148,32 @@ if (!sticking) {
 	    stickbottom = 0;
 	}
 	
-	v+=vsp;
+	y+=ySpd;
+	
+	if KEY_JUMP {
+		xSpd += lengthdir_x(thrustForce,headAngle);
+		ySpd += lengthdir_y(thrustForce,headAngle);
+	  }
+
+	if KEY_RIGHT {
+		headAngle -= turnSpd;
+	}
+	if KEY_LEFT {
+		headAngle += turnSpd;
+	}
+	
+	image_angle = headAngle;
+	
 }
 	
 	
 if (sticking) {
 
 	// Stop moving when no keys are pressed
-	if (!KEY_RIGHT and !KEY_LEFT) hsp = 0;
+	if (!KEY_RIGHT and !KEY_LEFT) xSpd = 0;
 
 	// Stop moving when no keys are pressed
-	if (!KEY_JUMP and !KEY_DOWN) vsp = 0;
+	if (!KEY_JUMP and !KEY_DOWN) ySpd = 0;
 
 }
 

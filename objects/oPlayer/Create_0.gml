@@ -17,3 +17,18 @@ jumpright = 0;
 
 // Flag to track if player is in catapult state
 //catapult = 0;
+
+
+// Settings
+walkSpd = 3; // speed when walking
+maxSpd = 10; // maximum moving speed
+jumpForce = 6; // jump speed
+thrustForce = 1; //thrust power
+
+headAngle = 270;
+offset = sprite_height/2-1; // player sprite should be centered, so it needs an offset to not sink into the ground
+turnSpd = 10; // how fast the player sprite turns (between 0-1)
+
+// Movement
+xSpd = 0;
+ySpd = 0;
