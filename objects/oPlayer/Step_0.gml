@@ -219,6 +219,15 @@ if (sticking) {
 	// Stop moving when no keys are pressed
 	//if (!KEY_JUMP and !KEY_DOWN) ySpd = 0;
 	
+	if KEY_JUMP {
+		xSpd += lengthdir_x(jumpSpd,headAngle);
+		ySpd += lengthdir_y(jumpSpd,headAngle);
+		stickbottom = 0;
+		sticktop = 0;
+		stickleft = 0;
+		stickright = 0;
+	  }
+	
 	if (stickright) {
 		if (KEY_RIGHT) 
 			{
@@ -244,21 +253,21 @@ if (sticking) {
 	if (stickbottom) {
 		if (KEY_RIGHT) 
 			{
-				xSpd = walkSpd;
+				xSpd = -walkSpd;
 			}
 		if (KEY_LEFT)
 			{
-				xSpd = -walkSpd;
+				xSpd = walkSpd;
 			}
 	}
 	if (sticktop) {
 		if (KEY_RIGHT) 
 			{
-				xSpd = -walkSpd;
+				xSpd = walkSpd;
 			}
 		if (KEY_LEFT)
 			{
-				xSpd = walkSpd;
+				xSpd = -walkSpd;
 			}
 	}
 

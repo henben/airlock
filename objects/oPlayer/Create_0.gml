@@ -22,8 +22,8 @@ jumpright = 0;
 // Settings
 walkSpd = 3; // speed when walking
 maxSpd = 10; // maximum moving speed
-jumpForce = 6; // jump speed
-thrustForce = 1; //thrust power
+jumpSpd = 6; // jump speed
+thrustForce = 1; //thrust force
 
 headAngle = 270;
 offset = sprite_height/2-1; // player sprite should be centered, so it needs an offset to not sink into the ground
