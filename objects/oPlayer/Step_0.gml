@@ -35,7 +35,13 @@ if (!sticking) {
 	if (place_meeting(x + 1, y, oWall))
 	{ 
 	    stickright = 1;
-    
+		
+		headAngle = 180;
+		
+		//xSpd = 2;
+		
+	
+		
 	    //jumpleft = 0;
 	    //jumpright = 1;
     
@@ -60,6 +66,10 @@ if (!sticking) {
 	if (place_meeting (x - 1, y, oWall))
 	{ 
 	    stickleft = 1;
+		
+		headAngle = 0;
+		
+		//xSpd = -2;
     
 	    //jumpleft = 1;
 	    //jumpright = 0;
@@ -103,6 +113,10 @@ if (!sticking) {
 	{ 
 	    sticktop = 1;
     
+		headAngle = 90;
+		
+		//ySpd = 2;
+	
 	    //jumpleft = 0;
 	    //jumpright = 1;
     
@@ -123,10 +137,15 @@ if (!sticking) {
 	    sticktop = 0;
 	}
 	
-	// Deal with ceiling
+	// Deal with floor
 	if (place_meeting(x, y - 1, oWall))
 	{ 
 	    stickbottom = 1;
+		
+		headAngle = 270;
+		
+		//ySpd = -2;
+	
     
 	    //jumpleft = 0;
 	    //jumpright = 1;
