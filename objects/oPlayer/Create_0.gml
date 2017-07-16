@@ -27,6 +27,7 @@ thrustForce = 1; //thrust force
 
 headAngle = 270;
 offset = sprite_height/2-1; // player sprite should be centered, so it needs an offset to not sink into the ground
+edgeOffset = 10;
 turnSpd = 10; // how fast the player sprite turns (between 0-1)
 
 // Movement

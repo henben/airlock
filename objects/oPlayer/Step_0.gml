@@ -3,7 +3,8 @@
 // instead of "keyboard_check(*)"
 KEY_RIGHT = keyboard_check(ord("D"));
 KEY_LEFT = keyboard_check(ord("A"));
-KEY_JUMP = keyboard_check(ord("W")); 
+KEY_THRUST = keyboard_check(ord("W")); 
+KEY_JUMP = keyboard_check_pressed(ord("W")); //avoids holding down thrust and jumping accidentally
 KEY_DOWN = keyboard_check(ord("S"));
 
 // Tracking whether player is sticking to a surface of any orientation
@@ -20,7 +21,7 @@ if (!sticking) {
 	//take player input
 	
 	//thrust
-	if KEY_JUMP {
+	if KEY_THRUST {
 		xSpd += lengthdir_x(thrustForce,headAngle);
 		ySpd += lengthdir_y(thrustForce,headAngle);
 	  }
@@ -46,7 +47,7 @@ if (!sticking) {
 			stickright = 1;
 		}
 		
-		else
+		else // moving left
 		
 		{
 			headAngle = 0;
@@ -63,65 +64,6 @@ if (!sticking) {
 
 	   xSpd = 0;
 	}
-
-	//	// Dealing with right side (Red Case)
-	//if (place_meeting(x + 1, y, oWall))
-	//{ 
-	   
-	
-		
-	//	//xSpd = 2;
-		
-	
-		
-	//    //jumpleft = 0;
-	//    //jumpright = 1;
-    
-	//    //catapult = 0;
-    
-	//    //if(KEY_JUMP)
-	//    //{
-	//    //    ySpd = -2
-	//    //}
-    
-	//    //if(KEY_DOWN)
-	//    //{
-	//    //    ySpd = 2;
-	//    //}
-	//}
-	//else 
-	//{
-	//    stickright = 0;
-	//}
-
-	//// Dealing with Left Side (Blue Case)
-	//if (place_meeting (x - 1, y, oWall))
-	//{ 
-	//    stickleft = 1;
-		
-	//	headAngle = 0;
-		
-	//	//xSpd = -2;
-    
-	//    //jumpleft = 1;
-	//    //jumpright = 0;
-    
-	//    //catapult = 0;
-    
-	//    //if(KEY_JUMP)
-	//    //{
-	//    //    ySpd = -2;
-	//    //}
-    
-	//    //if(KEY_DOWN)
-	//    //{
-	//    //    ySpd = 2;
-	//    //}
-	//}
-	//else 
-	//{
-	//    stickleft = 0;
-	//}
 
 	//Do horizontal movement
 	x += xSpd;
@@ -187,22 +129,50 @@ if (sticking) {
 	if (stickright) {
 		if (KEY_RIGHT) 
 			{
-				ySpd = -walkSpd;
+				if (place_meeting(x+1, y-edgeOffset, oWall))
+				{
+					ySpd = -walkSpd;
+				}
+				else
+				{
+					ySpd = 0;
+				}
 			}
 		if (KEY_LEFT)
 			{
+				if (place_meeting(x+1, y+edgeOffset, oWall))
+				{
 				ySpd = walkSpd;
+				}
+				else
+				{
+					ySpd = 0;
+				}
 			}
 	}
 	
 	if (stickleft) {
 		if (KEY_RIGHT) 
 			{
-				ySpd = walkSpd;
+				if (place_meeting(x-1, y+edgeOffset, oWall))
+				{
+					ySpd = walkSpd;
+				}
+				else
+				{
+					ySpd = 0;
+				}
 			}
 		if (KEY_LEFT)
 			{
-				ySpd = -walkSpd;
+				if (place_meeting(x-1, y-edgeOffset, oWall))
+				{
+					ySpd = -walkSpd;
+				}
+				else
+				{
+					ySpd = 0;
+				}
 			}
 	}
 	
