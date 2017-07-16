@@ -16,22 +16,42 @@ sticking = (stickright || stickleft || sticktop || stickbottom)
 //var inst;
 
 if (!sticking) {
+	
+	//take player input
+	
+	//thrust
+	if KEY_JUMP {
+		xSpd += lengthdir_x(thrustForce,headAngle);
+		ySpd += lengthdir_y(thrustForce,headAngle);
+	  }
 
-	//handle horizontal movement
+	if KEY_RIGHT {
+		headAngle -= turnSpd;
+	}
+	if KEY_LEFT {
+		headAngle += turnSpd;
+	}	
+
+
+	//handle horizontal wall collisions
 
 	//check if player is hitting wall horizontally
 	if (place_meeting(x + xSpd, y, oWall))
 	{
-	
+		//if moving right and hitting a wall, turn sprite left, stick to right
 	   if (sign(xSpd))
 		{
 			headAngle = 180;
+			image_angle = 180;
+			stickright = 1;
 		}
 		
 		else
 		
 		{
 			headAngle = 0;
+			image_angle = 0;
+			stickleft = 1;
 		}
 
 	   //Move until contact with the wall
@@ -44,84 +64,88 @@ if (!sticking) {
 	   xSpd = 0;
 	}
 
-		// Dealing with right side (Red Case)
-	if (place_meeting(x + 1, y, oWall))
-	{ 
-	    stickright = 1;
+	//	// Dealing with right side (Red Case)
+	//if (place_meeting(x + 1, y, oWall))
+	//{ 
+	   
 	
 		
-		//xSpd = 2;
+	//	//xSpd = 2;
 		
 	
 		
-	    //jumpleft = 0;
-	    //jumpright = 1;
+	//    //jumpleft = 0;
+	//    //jumpright = 1;
     
-	    //catapult = 0;
+	//    //catapult = 0;
     
-	    //if(KEY_JUMP)
-	    //{
-	    //    ySpd = -2
-	    //}
+	//    //if(KEY_JUMP)
+	//    //{
+	//    //    ySpd = -2
+	//    //}
     
-	    //if(KEY_DOWN)
-	    //{
-	    //    ySpd = 2;
-	    //}
-	}
-	else 
-	{
-	    stickright = 0;
-	}
+	//    //if(KEY_DOWN)
+	//    //{
+	//    //    ySpd = 2;
+	//    //}
+	//}
+	//else 
+	//{
+	//    stickright = 0;
+	//}
 
-	// Dealing with Left Side (Blue Case)
-	if (place_meeting (x - 1, y, oWall))
-	{ 
-	    stickleft = 1;
+	//// Dealing with Left Side (Blue Case)
+	//if (place_meeting (x - 1, y, oWall))
+	//{ 
+	//    stickleft = 1;
 		
-		headAngle = 0;
+	//	headAngle = 0;
 		
-		//xSpd = -2;
+	//	//xSpd = -2;
     
-	    //jumpleft = 1;
-	    //jumpright = 0;
+	//    //jumpleft = 1;
+	//    //jumpright = 0;
     
-	    //catapult = 0;
+	//    //catapult = 0;
     
-	    //if(KEY_JUMP)
-	    //{
-	    //    ySpd = -2;
-	    //}
+	//    //if(KEY_JUMP)
+	//    //{
+	//    //    ySpd = -2;
+	//    //}
     
-	    //if(KEY_DOWN)
-	    //{
-	    //    ySpd = 2;
-	    //}
-	}
-	else 
-	{
-	    stickleft = 0;
-	}
+	//    //if(KEY_DOWN)
+	//    //{
+	//    //    ySpd = 2;
+	//    //}
+	//}
+	//else 
+	//{
+	//    stickleft = 0;
+	//}
 
 	//Do horizontal movement
 	x += xSpd;
 	
-	//handle vertical movement
+	//handle vertical wall collisions
 	
 	//check if we're hitting a wall vertically
 	if (place_meeting(x, y + ySpd, oWall))
 	{
 	
-	   	
+	   	//if moving up and hitting a wall, point sprite down and stick to top
 	   if (sign(ySpd))
 		{
 			headAngle = 90;
+			image_angle = 90;
+			sticktop = 1;
 		}
 		
 		else
 		
 		{
 			headAngle = 270;
+			image_angle = 270;
+			stickbottom = 1;
 		}
 		
 	   //Move until contact with the wall
@@ -133,78 +157,10 @@ if (!sticking) {
 	   ySpd = 0;
 	}
 	
-	// Deal with ceiling
-	if (place_meeting(x, y + 1, oWall))
-	{ 
-	    sticktop = 1;
-    
-		headAngle = 90;
-		
-		//ySpd = 2;
-	
-	    //jumpleft = 0;
-	    //jumpright = 1;
-    
-	    //catapult = 0;
-    
-	    //if(KEY_JUMP)
-	    //{
-	    //    ySpd = -2
-	    //}
-    
-	    //if(KEY_DOWN)
-	    //{
-	    //    ySpd = 2;
-	    //}
-	}
-	else 
-	{
-	    sticktop = 0;
-	}
-	
-	// Deal with floor
-	if (place_meeting(x, y - 1, oWall))
-	{ 
-	    stickbottom = 1;
-		
-		headAngle = 270;
-		
-		//ySpd = -2;
-	
-    
-	    //jumpleft = 0;
-	    //jumpright = 1;
-    
-	    //catapult = 0;
-    
-	    //if(KEY_JUMP)
-	    //{
-	    //    ySpd = -2
-	    //}
-    
-	    //if(KEY_DOWN)
-	    //{
-	    //    ySpd = 2;
-	    //}
-	}
-	else 
-	{
-	    stickbottom = 0;
-	}
 	
 	y+=ySpd;
 	
-	if KEY_JUMP {
-		xSpd += lengthdir_x(thrustForce,headAngle);
-		ySpd += lengthdir_y(thrustForce,headAngle);
-	  }
 
-	if KEY_RIGHT {
-		headAngle -= turnSpd;
-	}
-	if KEY_LEFT {
-		headAngle += turnSpd;
-	}
 	
 	image_angle = headAngle;
 	
