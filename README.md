@@ -6,7 +6,7 @@ This is the prototype for Airlock (working title). Airlock is Spelunky meets Gra
 In Airlock, the player controls an astronaut in a space station which is undergoing a disaster. The player's goal is to 
 navigate the space station to get to the end of the level (which might be the next section of the station, or an escape pod).
 
-##TODO
+## TODO
 
 - [ ] Stop moving sideways at an edge
 - [ ] Jumping with aim
