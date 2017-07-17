@@ -8,7 +8,7 @@ navigate the space station to get to the end of the level (which might be the ne
 
 ## TODO
 
-- [ x ] Stop moving sideways at an edge
+- [x] Stop moving sideways at an edge
 - [ ] Jumping with aim
 - [ ] Jumping with adjustable force
 - [ ] Weak 'swimming'
