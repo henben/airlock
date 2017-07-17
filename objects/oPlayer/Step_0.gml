@@ -111,12 +111,6 @@ if (!sticking) {
 	
 if (sticking) {
 
-	// Stop moving when no keys are pressed
-	//if (!KEY_RIGHT and !KEY_LEFT) xSpd = 0;
-
-	// Stop moving when no keys are pressed
-	//if (!KEY_JUMP and !KEY_DOWN) ySpd = 0;
-	
 	if KEY_JUMP {
 		xSpd += lengthdir_x(jumpSpd,headAngle);
 		ySpd += lengthdir_y(jumpSpd,headAngle);
@@ -138,6 +132,7 @@ if (sticking) {
 					ySpd = 0;
 				}
 			}
+			
 		if (KEY_LEFT)
 			{
 				if (place_meeting(x+1, y+edgeOffset, oWall))
@@ -152,6 +147,7 @@ if (sticking) {
 	}
 	
 	if (stickleft) {
+	
 		if (KEY_RIGHT) 
 			{
 				if (place_meeting(x-1, y+edgeOffset, oWall))
@@ -163,6 +159,7 @@ if (sticking) {
 					ySpd = 0;
 				}
 			}
+			
 		if (KEY_LEFT)
 			{
 				if (place_meeting(x-1, y-edgeOffset, oWall))
@@ -179,21 +176,53 @@ if (sticking) {
 	if (stickbottom) {
 		if (KEY_RIGHT) 
 			{
-				xSpd = -walkSpd;
+				if (place_meeting(x-edgeOffset, y-1, oWall))
+				{
+					xSpd = -walkSpd;
+				}
+				else
+				{
+					xSpd = 0;
+				}
 			}
+			
 		if (KEY_LEFT)
 			{
-				xSpd = walkSpd;
+				if (place_meeting(x+edgeOffset, y-1, oWall))
+				{
+					xSpd = walkSpd;
+				}
+				else
+				{
+					xSpd = 0;
+				}
 			}
 	}
+	
 	if (sticktop) {
+	
 		if (KEY_RIGHT) 
 			{
-				xSpd = walkSpd;
+				if (place_meeting(x+edgeOffset, y+1, oWall))
+				{
+					xSpd = walkSpd;
+				}
+				else
+				{
+					xSpd = 0;
+				}
 			}
+			
 		if (KEY_LEFT)
 			{
-				xSpd = -walkSpd;
+				if (place_meeting(x-edgeOffset, y+1, oWall))
+				{
+					xSpd = -walkSpd;
+				}
+				else
+				{
+					xSpd = 0;
+				}
 			}
 	}
 
@@ -201,8 +230,5 @@ if (sticking) {
 	y += ySpd;
 	xSpd = 0;
 	ySpd = 0;
+	
 }
-
-
-
-
