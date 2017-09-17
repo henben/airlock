@@ -1,7 +1,7 @@
 # airlock
 Airlock game prototype
 
-This is the prototype for Airlock (working title). Airlock is Spelunky meets Gravity (with Sandra Bullock).
+This is the prototype for Airlock (working title). Airlock is Spelunky meets Gravity (the film with Sandra Bullock).
 
 In Airlock, the player controls an astronaut in a space station which is undergoing a disaster. The player's goal is to 
 navigate the space station to get to the end of the level (which might be the next section of the station, or an escape pod).
@@ -9,17 +9,22 @@ navigate the space station to get to the end of the level (which might be the ne
 ## TODO
 
 - [x] Stop moving sideways at an edge
-- [ ] Jumping with aim
+- [x] Jumping with aim
 - [ ] Jumping with adjustable force
-- [ ] Weak 'swimming'
+- [x] Weak 'swimming'
 
 ## Movement
 
-The space station has no gravity, but the astronaut can stick to walls and move along them, or launch herself off walls with a chosen
+The space station has no gravity.
+
+The astronaut has two movement modes: floating freely, and when grabbing onto a wall. The astronaut is assumed to be able to grab onto interior walls due to handholds/velcro boots.
+
+When not stuck to a wall, the astronaut can rotate. In a pressurised area, she can weakly thrust in the direction she is facing (representing 'swimming' through the air). 
+
+When stuck to a wall, the astronaut can move along it. She can launch herself off walls with a chosen
 direction and force.
 
-In a pressurised room when not touching the wall, perhaps the astronaut can 'swim' slowly. Some items (fire extinguisher, 
-reaction pistol, EVA rig) enable the astronaut to move around Asteroids style.
+Some items (fire extinguisher, reaction pistol, EVA rig, grappling hook) enable the astronaut to thrust more strongly when floating or move in different ways.
 
 ## Astronaut
 
